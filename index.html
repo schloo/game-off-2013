@@ -93,9 +93,9 @@
 			var bg = tinycolor($('#control-color').css('background-color')).toHsl();
 
 			var val;
+			var amount = 0.03;
 			if (key === 'l') {
 				if (dir) {
-					var amount = 0.03;
 					if (bg[key]+amount > 1) {
 						val = 0;
 					} else {
