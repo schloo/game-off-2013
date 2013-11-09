@@ -95,21 +95,23 @@
 			var val;
 			if (key === 'l') {
 				if (dir) {
-					if (bg[key]+0.01 > 1) {
+					var amount = 0.03;
+					if (bg[key]+amount > 1) {
 						val = 0;
 					} else {
-						val = 0.01;
+						val = amount;
 					}
 				} else {
-					if (bg[key]-0.01 < 0) {
+					if (bg[key]-amount < 0) {
 						val = 0;
 					} else {
-						val = -0.01;
+						val = -1*amount;
 					}
 				}
 
 			} else {
-				var amount = 3;
+				var amount = 8;
+				if ((bg[key]-amount) < 0) { amount -= 360; }
 				var val = (dir) ? amount : -1*amount;
 				if (bg[key]+val < 0) val += 360;
 			}
