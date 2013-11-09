@@ -1,0 +1,152 @@
+<html>
+<head>
+	<title>Color Prototype</title>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+
+		}
+		a {
+			cursor: pointer;
+		}
+		h3 {
+			font-size: 20px;
+			border-bottom: 1px solid #CCC;
+		}
+		#colors {
+
+			height: 200px;
+			width: 800px;
+			margin: 0 auto;
+			padding: 40px;
+			clear: both;
+		}
+		.color {
+			float: left;
+			width: 360px;
+			height: 360px;
+			border: 1px solid #000;
+			margin-right: 20px;
+		}
+		#control-color {
+
+		}
+		#target-color {
+
+		}
+		#controls {
+			clear: both;
+			width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.control {
+			width: 360px;
+			float: left;
+			margin-right: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="colors">
+		<div id="control-color" class="color"></div>
+		<div id="target-color"  class="color"></div>
+
+	</div>
+	<div id="controls">
+		<div id="l" class="control">
+			<h3>Brightness</h3>
+			<a class="up">&#x25B2</a>
+			<a class="down">&#x25BC;</a>
+			<p>Use arrow keys up and down</p>
+		</div>
+		<div id="h" class="control">
+			<h3>Hue</h3>
+			<a class="up">&#x25B2</a>
+			<a class="down">&#x25BC;</a>
+			<p>Use arrow keys left and right</p>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script type="text/javascript" src="tinycolor.js"></script>
+	<script type="text/javascript">
+		var generateRandomColor = function() {
+			var hue = Math.floor(Math.random()*360);
+			var saturation = 0.8;
+			var lightness = Math.random();
+			return tinycolor("hsl("+hue+","+saturation+","+lightness+")").toHex()
+		}
+		$('#control-color').css('background-color',generateRandomColor());
+		$('#target-color').css('background-color',generateRandomColor());
+
+		$('#l, #h').each(function(){
+			var key = $(this).attr('id');
+
+			$(this).find('.up,.down').click(function(){
+				changeVal(key,($(this).hasClass('down')) ? 1 : 0);
+			});
+		});
+
+		var changeVal = function(key,dir) {
+			var bg = tinycolor($('#control-color').css('background-color')).toHsl();
+
+			var val;
+			if (key === 'l') {
+				if (dir) {
+					if (bg[key]+0.01 > 1) {
+						val = 0;
+					} else {
+						val = 0.01;
+					}
+				} else {
+					if (bg[key]-0.01 < 1) {
+						val = 0;
+					} else {
+						val = -0.01;
+					}
+				}
+
+			} else {
+				var amount = 3;
+				var val = (dir) ? amount : -1*amount;
+			}
+
+			bg[key] += val;
+			$('#control-color').css('background-color', tinycolor(bg).toHex());
+		}
+
+
+		var keyIsDown;
+
+
+		var keydown = function(key) {
+			switch(key) {
+				case 38 : case 40 :
+					changeVal('l',(key===38) ? 1 : 0);
+					return false;
+				break;
+				case 39 : case 37 :
+					changeVal('h',(key===38) ? 1 : 0);
+					return false;
+				break;
+				default :
+				break;
+			}
+		};
+
+		$('body').keydown(function(e){
+			var current_key = e.which;
+
+			return keydown(current_key);
+
+
+		}).keyup(function(){
+			keyIsDown = null;
+
+		});
+
+	</script>
+</body>
+</html>
