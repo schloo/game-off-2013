@@ -111,6 +111,7 @@
 			} else {
 				var amount = 3;
 				var val = (dir) ? amount : -1*amount;
+				if (bg[key]+val < 0) val += 360;
 			}
 
 			bg[key] += val;
