@@ -101,7 +101,7 @@
 						val = 0.01;
 					}
 				} else {
-					if (bg[key]-0.01 < 1) {
+					if (bg[key]-0.01 < 0) {
 						val = 0;
 					} else {
 						val = -0.01;
@@ -128,7 +128,7 @@
 					return false;
 				break;
 				case 39 : case 37 :
-					changeVal('h',(key===38) ? 1 : 0);
+					changeVal('h',(key===39) ? 1 : 0);
 					return false;
 				break;
 				default :
