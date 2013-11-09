@@ -28,6 +28,8 @@
 			height: 360px;
 			border: 1px solid #000;
 			margin-right: 20px;
+
+  		transition: background-color 100ms linear;
 		}
 		#control-color {
 
@@ -93,8 +95,8 @@
 			var bg = tinycolor($('#control-color').css('background-color')).toHsl();
 
 			var val;
-			var amount = 0.03;
 			if (key === 'l') {
+				var amount = 0.03;
 				if (dir) {
 					if (bg[key]+amount > 1) {
 						val = 0;
