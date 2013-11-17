@@ -1,4 +1,4 @@
-require([ 'backbone', 'App'], function(Backbone, App) {
+require([ 'backbone', 'app'], function(Backbone, App) {
 	var Router = Backbone.Router.extend({
 
 	  routes: {
