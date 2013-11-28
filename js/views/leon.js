@@ -101,9 +101,11 @@ define([
 	  	},
 
 	  	drawWalk: function(walkIndex) {
-	  		this.$img.attr('src',this.src+this.imgs[walkIndex]);
-	  		this.$svg.html(this.svgs[walkIndex]);
-	  		this.drawColor();
+	  		if ( this.$img ) {
+	  			this.$img.attr('src',this.src+this.imgs[walkIndex]);
+	  			this.$svg.html(this.svgs[walkIndex]);
+	  			this.drawColor();
+	  		}
 	  	},
 
 	  	setColor: function(color) {
