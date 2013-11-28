@@ -55,6 +55,14 @@ define([ 	'backbone',
 	  		attrs[key] = val+v;
 	  		this.color.setColor(attrs);
 
+	  	},
+
+	  	setTargetPlayer: function(target) {
+	  		this.target = target;
+	  		target.setColor(this.color.getColor());
+	  		this.listenTo(this.color, 'change', function(color){
+	  			target.setColor(this.color.getColor());
+	  		});
 	  	}
 
 	});

@@ -17,7 +17,8 @@ requirejs.config({
         underscore: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
         backbone: '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
         less: '//cdnjs.cloudflare.com/ajax/libs/less.js/1.4.1/less.min',
-        tinycolor: 'lib/tinycolor'
+        tinycolor: 'lib/tinycolor',
+        q: '//cdnjs.cloudflare.com/ajax/libs/q.js/0.9.6/q.min'
     }
 });
 
