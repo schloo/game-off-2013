@@ -33,9 +33,7 @@ define([
 
 			// load leon images
 			_.each(this.imgs, function(img){
-				$.get(this.src+img, function(){
-					loads++;
-				}.bind(this));
+				$.get(this.src+img);
 			}.bind(this));
 
 
@@ -50,7 +48,7 @@ define([
 						$svg = $svg.removeAttr('xmlns:a');
 						this.svgs[i] = $svg;
 
-						if (loads === this.svgs.length + this.imgs.length) {
+						if ( loads === this.svgs.length ) {
 							preloadDeferred.resolve(this);
 						}
 
@@ -77,7 +75,6 @@ define([
 				this.$assets.append(this.$svg);
 
 				this.$el.append(this.$assets);
-
 
 				this.drawWalk(this.walkIndex);
 				renderDeferred.resolve(this);
