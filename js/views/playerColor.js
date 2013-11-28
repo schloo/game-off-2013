@@ -28,7 +28,7 @@ define([ 	'backbone',
 	  	},
 
 	  	changeBrightness: function(val) {
-	  		val *= 0.03;
+	  		val *= 0.05;
 
 	  		var min = 0, max = 1, key = 'l', attrs = {};
 
@@ -44,7 +44,7 @@ define([ 	'backbone',
 	  	},
 
 	  	changeHue: function(val) {
-	  		val *= 4;
+	  		val *= 6;
 
 	  		var min = 0, max = 360, key = 'h', attrs = {};
 
