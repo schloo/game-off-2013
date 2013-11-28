@@ -2,7 +2,12 @@ define([ 	'backbone',
 			'models/color',
 			'views/abstractColor'
 		], function(Backbone, ColorModel, AbstractColor) {
-
+	Number.prototype.wrap = function( low, high ) {
+		var range = high - low;
+		var mod = (this-low) % range;
+		if (mod < 0) { mod += high; }
+		return mod + low; // low -> high
+	}
 	var PlayerColor = AbstractColor.extend({
 
 	  	keydown: function(e) {
@@ -45,14 +50,7 @@ define([ 	'backbone',
 
 	  		var v = this.color.getColor('hsl')[key];
 
-	  		if (val+v > max) {
-	  			v += -360;
-	  		}
-	  		if (val+v < min) {
-	  			val += 360;
-	  		}
-
-	  		attrs[key] = val+v;
+	  		attrs[key] = (val+v).wrap(min,max);
 	  		this.color.setColor(attrs);
 
 	  	},
