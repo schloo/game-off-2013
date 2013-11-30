@@ -3,7 +3,8 @@ define([ 	'backbone',
 			'views/targetColor',
 			'views/colorDistance',
 			'views/leon',
-		], function(Backbone, PlayerColorView, TargetColorView, ColorDistanceView, Leon) {
+			'views/decor',
+		], function(Backbone, PlayerColorView, TargetColorView, ColorDistanceView, Leon, Decor) {
 
 	var App = Backbone.View.extend({
 
@@ -17,9 +18,11 @@ define([ 	'backbone',
 			this.playerColor = new PlayerColorView();
 			this.targetColor = new TargetColorView();
 			this.colorDistance = new ColorDistanceView({ a: this.playerColor, b: this.targetColor });
+			this.decor = new Decor();
 			this.leon = new Leon({});
 			this.targetColor.setColorDistance(this.colorDistance);
 			this.playerColor.setTargetPlayer(this.leon);
+
 		},
 
 	  	index: function() {
@@ -31,9 +34,13 @@ define([ 	'backbone',
 	  		this.$el.append(this.targetColor.render().el);
 	  		this.$el.append(this.colorDistance.render().el);
 
+	  		$('body').append(this.decor.render().el);
+
 	  		this.leon.render().then(function(leon){
 	  			this.$el.append(leon.el);
 	  		}.bind(this));
+
+	  		$('body').keydown(_.bind(this.keydown,this));
 	  	},
 
 	  	keydown: function(e) {

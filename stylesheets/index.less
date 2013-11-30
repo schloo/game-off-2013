@@ -15,10 +15,12 @@ body, html {
 }
 .colorDistance {
 	float: right;
+	background: white;
 }
 p.instructions {
 	text-align: center;
 	margin-bottom: 50px;
+	background: white;
 }
 
 
@@ -28,16 +30,16 @@ p.instructions {
 #leon {
 	position: absolute;
 
-	bottom: 20px;
+	bottom: 12%;
 	overflow: hidden;
-	width: 716px / @ratio;
+	width: 718px / @ratio;
 	height: 468px / @ratio;
 	left: 50%;
 	margin-left: (716px / @ratio)/-2;
 
 	#leonAssets {
 		top: -156px / @ratio;
-		left: -98px / @ratio;
+		left: -96px / @ratio;
 		position: absolute;
 		width: @leon-width;
 		height: 768px / @ratio; // img height by img width
@@ -72,6 +74,21 @@ p.instructions {
 	width: 100%;
 	top: 0;
 	left: 0;
-	background: url(../img/backgrounds/base.svg) no-repeat;
+	background-image: url(../img/backgrounds/base.svg);
+	background-size: auto 100%;
 	z-index: 0;
+
+	.furniture {
+		height: 100%;
+		background-size: auto 100%;
+		background-repeat: no-repeat;
+	}
+
+	.bookshelf { background-image: url(../img/backgrounds/bookshelf.svg); }
+	.chair { background-image: url(../img/backgrounds/chair.svg); }
+	.couch { background-image: url(../img/backgrounds/couch.svg); }
+	.curtains { background-image: url(../img/backgrounds/curtains.svg); }
+	.fireplace { background-image: url(../img/backgrounds/fireplace.svg); }
+	.ottoman { background-image: url(../img/backgrounds/ottoman.svg); }
+	.pot { background-image: url(../img/backgrounds/pot.svg); }
 }

@@ -84,6 +84,7 @@ define([
 		},
 
 	  	keydown: function(e) {
+
 	  		switch(e.which) {
 	  			case 32: // space
 	  				e.preventDefault();
