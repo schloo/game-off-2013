@@ -19,7 +19,7 @@ define([
 			this.timeAmount = 200;
 	  		this.steps = 20;
 	  		this.amountToMove = 5;
-	  		this.amountToIncrease = 0.01;
+	  		this.amountToIncrease = 0.001;
 		},
 
 		render: function() {
@@ -30,7 +30,7 @@ define([
 		},
 
 		renderFurniture: function(obj) {
-			this.$furniture.append('<div class="furniture '+obj.get('type')+'" />');
+			this.$furniture.append('<div style="left: 90%" class="furniture '+obj.get('type')+'" />');
 		},
 
 	  	scroll: function(model) {
@@ -50,10 +50,12 @@ define([
 
 	  	move: function() {
 
-	  		this.$furniture.$('.furniture').each(function(furniture){
-	  			var left = parseFloat(furniture.css('left'));
+
+	  		this.$('.furniture').each(function(i, furniture){
+
+	  			var left = parseFloat($(furniture).css('left'));
 	  			left = (left-(this.amountToMove/this.steps));
-	  			furniture.css({ left: left+'px' });
+	  			$(furniture).css({ left: left+'px' });
 	  		}.bind(this));
 
 
