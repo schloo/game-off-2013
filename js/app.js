@@ -38,6 +38,7 @@ define([ 	'backbone',
 
 	  		this.leon.render().then(function(leon){
 	  			this.$el.append(leon.el);
+	  			leon.model.set('walk',true);
 	  		}.bind(this));
 
 
@@ -45,11 +46,11 @@ define([ 	'backbone',
 
 	  	keydown: function(e) {
 	  		this.playerColor.keydown(e);
-	  		this.leon.keydown(e);
+	  		// this.leon.keydown(e);
 	  	},
 
 	  	keyup: function(e) {
-	  		this.leon.keyup(e);
+	  		// this.leon.keyup(e);
 	  	},
 
 	});

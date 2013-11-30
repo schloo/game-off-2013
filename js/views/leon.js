@@ -27,6 +27,7 @@ define([
 			this.model = new LeonModel();
 
 			this.listenTo(this.model,'change:walk',_.bind(this.handleWalk,this));
+
 		},
 
 		preload: function() {
@@ -82,28 +83,30 @@ define([
 
 				this.drawWalk(this.walkIndex);
 				renderDeferred.resolve(this);
+
+
 			}.bind(this));
 
 			return renderDeferred.promise;
 		},
 
-	  	keydown: function(e) {
+	  	// keydown: function(e) {
 
-	  		switch(e.which) {
-	  			case 32: // space
-	  				e.preventDefault();
-	  				this.model.set('walk',true);
-	  			break;
-	  		}
-	  	},
+	  	// 	switch(e.which) {
+	  	// 		case 32: // space
+	  	// 			e.preventDefault();
+	  	// 			this.model.set('walk',true);
+	  	// 		break;
+	  	// 	}
+	  	// },
 
-	  	keyup: function(e) {
-	  		switch(e.which) {
-	  			case 32: // space
-	  				this.model.set('walk',false);
-	  			break;
-	  		}
-	  	},
+	  	// keyup: function(e) {
+	  	// 	switch(e.which) {
+	  	// 		case 32: // space
+	  	// 			this.model.set('walk',false);
+	  	// 		break;
+	  	// 	}
+	  	// },
 
 	  	handleWalk: function(model) {
 	  		if ( model.changed.walk === true) {

@@ -16,6 +16,10 @@ define([
 
 			this.listenTo(this.leon.model,'change:walk',_.bind(this.scroll,this));
 
+			this.timeAmount = 200;
+	  		this.steps = 20;
+	  		this.amountToMove = 5;
+	  		this.amountToIncrease = 0.01;
 		},
 
 		render: function() {
@@ -30,15 +34,14 @@ define([
 		},
 
 	  	scroll: function(model) {
-	  		this.amount = 200;
-	  		this.steps = 20;
+
 
   			if ( model.changed.walk === true) {
 
   				this.move();
   				this.scrollingInterval = setInterval(function(){
   					this.move();
-  				}.bind(this),this.amount/this.steps);
+  				}.bind(this),this.timeAmount/this.steps);
 
   			} else if ( this.scrollingInterval ) {
   				clearInterval(this.scrollingInterval);
@@ -46,9 +49,12 @@ define([
 	  	},
 
 	  	move: function() {
-	  		this.amountToMove = 40;
-	  		var left = parseInt(this.$furniture.css('left'));
-	  		this.$furniture.css({ left: (left-(this.amountToMove/this.steps))+'px' });
+
+	  		var left = parseFloat(this.$furniture.css('left'));
+	  		left = (left-(this.amountToMove/this.steps));
+	  		this.$furniture.css({ left: left+'px' });
+
+	  		this.amountToMove += this.amountToIncrease;
 	  	}
 
 	});
