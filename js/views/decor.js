@@ -50,9 +50,12 @@ define([
 
 	  	move: function() {
 
-	  		var left = parseFloat(this.$furniture.css('left'));
-	  		left = (left-(this.amountToMove/this.steps));
-	  		this.$furniture.css({ left: left+'px' });
+	  		this.$furniture.$('.furniture').each(function(furniture){
+	  			var left = parseFloat(furniture.css('left'));
+	  			left = (left-(this.amountToMove/this.steps));
+	  			furniture.css({ left: left+'px' });
+	  		}.bind(this));
+
 
 	  		this.amountToMove += this.amountToIncrease;
 	  	}
