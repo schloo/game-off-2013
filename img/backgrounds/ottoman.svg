@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="960px" height="560px" viewBox="0 0 960 560" enable-background="new 0 0 960 560" xml:space="preserve">
+<rect y="450" fill="#808080" width="960" height="110"/>
+<rect fill="#E6E6E6" width="960" height="450"/>
+<g>
+	<g>
+		<path fill="#29CC5F" d="M705,470c0,5.5-4.5,10-10,10H115c-5.5,0-10-4.5-10-10V190c0-5.5,4.5-10,10-10h580c5.5,0,10,4.5,10,10V470z
+			"/>
+		<path fill="none" stroke="#15662F" stroke-width="20" stroke-miterlimit="10" d="M705,470c0,5.5-4.5,10-10,10H115
+			c-5.5,0-10-4.5-10-10V190c0-5.5,4.5-10,10-10h580c5.5,0,10,4.5,10,10V470z"/>
+	</g>
+	<g>
+		<path fill="#29CC5F" d="M605,470c0,5.5-4.5,10-10,10H215c-5.5,0-10-4.5-10-10V190c0-5.5,4.5-10,10-10h380c5.5,0,10,4.5,10,10V470z
+			"/>
+		<path fill="none" stroke="#15662F" stroke-width="20" stroke-miterlimit="10" d="M605,470c0,5.5-4.5,10-10,10H215
+			c-5.5,0-10-4.5-10-10V190c0-5.5,4.5-10,10-10h380c5.5,0,10,4.5,10,10V470z"/>
+	</g>
+	<line fill="#29CC5F" stroke="#15662F" stroke-width="20" stroke-miterlimit="10" x1="405" y1="180" x2="405" y2="480"/>
+</g>
+</svg>

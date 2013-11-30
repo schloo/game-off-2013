@@ -7,7 +7,7 @@ define([ 	'backbone',
 
 	var App = Backbone.View.extend({
 
-		el: 'body',
+		el: '#content',
 
 		events: {
 			'keydown': 'keydown',
