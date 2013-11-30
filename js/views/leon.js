@@ -1,7 +1,8 @@
 define([
 	'backbone',
-	'q'
-], function(Backbone, Q) {
+	'q',
+	'models/leon'
+], function(Backbone, Q, LeonModel) {
 
 	var Leon = Backbone.View.extend({
 
@@ -23,6 +24,9 @@ define([
 
 		initialize: function(options) {
 			this.walkIndex = 0;
+			this.model = new LeonModel();
+
+			this.listenTo(this.model,'change:walk',_.bind(this.handleWalk,this));
 		},
 
 		preload: function() {
@@ -88,8 +92,27 @@ define([
 	  		switch(e.which) {
 	  			case 32: // space
 	  				e.preventDefault();
-	  				this.walk();
+	  				this.model.set('walk',true);
 	  			break;
+	  		}
+	  	},
+
+	  	keyup: function(e) {
+	  		switch(e.which) {
+	  			case 32: // space
+	  				this.model.set('walk',false);
+	  			break;
+	  		}
+	  	},
+
+	  	handleWalk: function(model) {
+	  		if ( model.changed.walk === true) {
+	  			this.walk();
+	  			this.walkingInterval = setInterval(function(){
+	  				this.walk();
+	  			}.bind(this),200);
+	  		} else if ( this.walkingInterval ) {
+	  			clearInterval(this.walkingInterval);
 	  		}
 	  	},
 

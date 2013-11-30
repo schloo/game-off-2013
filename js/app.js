@@ -10,18 +10,18 @@ define([ 	'backbone',
 
 		el: '#content',
 
-		events: {
-			'keydown': 'keydown',
-		},
-
 		initialize: function() {
 			this.playerColor = new PlayerColorView();
 			this.targetColor = new TargetColorView();
 			this.colorDistance = new ColorDistanceView({ a: this.playerColor, b: this.targetColor });
-			this.decor = new Decor();
-			this.leon = new Leon({});
+			this.leon = new Leon();
+			this.decor = new Decor({ leon : this.leon});
 			this.targetColor.setColorDistance(this.colorDistance);
 			this.playerColor.setTargetPlayer(this.leon);
+
+			$('body').keydown(_.bind(this.keydown,this));
+			$('body').keyup(_.bind(this.keyup,this));
+
 
 		},
 
@@ -40,13 +40,17 @@ define([ 	'backbone',
 	  			this.$el.append(leon.el);
 	  		}.bind(this));
 
-	  		$('body').keydown(_.bind(this.keydown,this));
+
 	  	},
 
 	  	keydown: function(e) {
 	  		this.playerColor.keydown(e);
 	  		this.leon.keydown(e);
-	  	}
+	  	},
+
+	  	keyup: function(e) {
+	  		this.leon.keyup(e);
+	  	},
 
 	});
 	return App;
