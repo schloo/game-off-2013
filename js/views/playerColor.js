@@ -49,7 +49,7 @@ define([ 	'backbone',
 	  		var min = 0, max = 360, key = 'h', attrs = {};
 
 	  		var v = this.color.getColor('hsl')[key];
-	  		console.log('v', v);
+
 	  		attrs[key] = (val+v).wrap(min,max);
 	  		this.color.setColor(attrs);
 

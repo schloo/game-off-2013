@@ -1,7 +1,8 @@
 define([ 	'backbone',
 			'models/color',
-			'views/abstractColor'
-		], function(Backbone, ColorModel, AbstractColor) {
+			'views/abstractColor',
+			'tinycolor'
+		], function(Backbone, ColorModel, AbstractColor, tinycolor) {
 
 	var TargetColor = AbstractColor.extend({
 
@@ -12,9 +13,10 @@ define([ 	'backbone',
 
 
 			this.color.set('color',this.color.random());
+			this.color.set('listening',false);
 
 			this.walking = false;
-			this.walk();
+			// this.walk();
 		},
 
 		setColorDistance: function(colorDistance) {
@@ -29,22 +31,34 @@ define([ 	'backbone',
 				opts = { changed: {distance: this.colorDistance.model.get('distance')} };
 			}
 
-			if (opts.changed.distance < this.colorDistance.model.get('threshold')) {
-				this.colorWalk();
+			if (this.color.get('listening') && opts.changed.distance < this.colorDistance.model.get('threshold')) {
+				this.color.set('threshold',true);
+				this.color.get('listening', false);
+				// this.setColor();
 			}
 		},
 
-		colorWalk: function() {
+		setColor: function(targetColor, time) {
+			this.color.set('threshold',false);
+			this.color.set('listening',true);
 			if (this.stepper) { clearInterval(this.stepper); }
 			var ths = this;
 			var steps = 50;
 			var min = 1500;
 			var max = 3500;
 
-			var randomColor = this.color.random().toHsl();
+			if ( targetColor ) {
+				targetColor = tinycolor(targetColor).toHsl();
+			} else {
+				targetColor = this.color.random().toHsl();
+			}
+
 			var currentColor = this.color.getColor('hsl');
 
-			var time = Math.floor(Math.random() * (max-min)) + min;
+			if ( !time ) {
+				time = Math.floor(Math.random() * (max-min)) + min;
+			}
+
 
 
 			var step = 0;
@@ -60,9 +74,9 @@ define([ 	'backbone',
 					clearInterval(ths.stepper);
 				}
 
-				var h = getStep(currentColor.h, randomColor.h, step);
-				var s = getStep(currentColor.s, randomColor.s, step);
-				var l = getStep(currentColor.l, randomColor.l, step);
+				var h = getStep(currentColor.h, targetColor.h, step);
+				var s = getStep(currentColor.s, targetColor.s, step);
+				var l = getStep(currentColor.l, targetColor.l, step);
 				var c = 'hsl('+h+','+s+','+l+',)';
 				ths.color.set('color',c);
 
@@ -71,7 +85,7 @@ define([ 	'backbone',
 
 		walk: function() {
 			if (this.stepper) { clearInterval(this.stepper); }
-			this.colorWalk();
+			this.setColor();
 		}
 
 	});

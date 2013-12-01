@@ -5,6 +5,7 @@ define(['backbone', 'tinycolor'], function(Backbone, tinycolor) {
 		initialize: function(opts) {
 			if (opts.color === null) { opts.color = this.random(); }
 
+			this.set('threshold',false);
 			this.set('color',opts.color);
 		},
 

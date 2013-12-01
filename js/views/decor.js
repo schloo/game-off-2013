@@ -1,43 +1,44 @@
 define([
 	'backbone',
-	'collections/decor'
-], function(Backbone, DecorCollection) {
+	'collections/decor',
+	'models/furniture'
+], function(Backbone, DecorCollection, FurnitureModel) {
 
 	var DecorView = Backbone.View.extend({
 
 		initialize: function(options) {
+			this.parent = options.parent;
+
 			this.leon = options.leon;
 
 			this.$el.attr('id', 'background');
 
-			this.collection = new DecorCollection();
+			this.collection = new DecorCollection({ parent: this });
 			this.listenTo(this.collection, 'add', this.renderFurniture);
-
 
 			this.listenTo(this.leon.model,'change:walk',_.bind(this.scroll,this));
 
 			this.timeAmount = 200;
 	  		this.steps = 20;
-	  		this.amountToMove = 5;
-	  		this.amountToIncrease = 0.001;
+
 		},
 
 		render: function() {
 			this.$furniture = $('<div id="furniture" />');
 			this.$el.append(this.$furniture);
-			this.collection.add(this.collection.makeNewFurniture());
+			this.collection.add(new FurnitureModel());
 			return this;
 		},
 
-		renderFurniture: function(obj) {
-			this.$furniture.append('<div style="left: 90%" class="furniture '+obj.get('type')+'" />');
+		renderFurniture: function(model) {
+
+			this.$furniture.append(model.view.render().el);
 		},
 
 	  	scroll: function(model) {
 
-
   			if ( model.changed.walk === true) {
-
+  				clearInterval(this.scrollingInterval);
   				this.move();
   				this.scrollingInterval = setInterval(function(){
   					this.move();
@@ -49,17 +50,11 @@ define([
 	  	},
 
 	  	move: function() {
+	  		this.collection.move();
+	  	},
 
-
-	  		this.$('.furniture').each(function(i, furniture){
-
-	  			var left = parseFloat($(furniture).css('left'));
-	  			left = (left-(this.amountToMove/this.steps));
-	  			$(furniture).css({ left: left+'px' });
-	  		}.bind(this));
-
-
-	  		this.amountToMove += this.amountToIncrease;
+	  	collision: function(model) {
+	  		this.parent.collision(model);
 	  	}
 
 	});
