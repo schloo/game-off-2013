@@ -3,7 +3,7 @@ define(['backbone', 'tinycolor'], function(Backbone, tinycolor) {
 	var Color = Backbone.Model.extend({
 
 		initialize: function(opts) {
-			if (opts.color === null) { opts.color = this.random(); }
+			if (opts.color === null) { opts.color = tinycolor('156b15'); }
 
 			this.set('threshold',false);
 			this.set('color',opts.color);

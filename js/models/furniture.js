@@ -16,8 +16,7 @@ define([
 		],
 
 		initialize: function(options) {
-
-			this.set('type', (options || {}).type || this.getRandomType());
+			this.set('type', (options || {}).type || this.getRandomType( (options || {}).current));
 			this.set('position', (options || {}).initialLeft || 100 );
 			this.amountToMove = 0.5;
 			this.threshold = 45;
@@ -26,9 +25,14 @@ define([
 			this.listenTo(this, 'change:position', this.changePosition);
 		},
 
-		getRandomType: function() {
-			var random_int = Math.floor(Math.random()*this.types.length);
-			return this.types[random_int];
+		getRandomType: function(num) {
+
+			if ( num === undefined) {
+				num = Math.floor(Math.random()*this.types.length);
+			} else {
+				num = num % this.types.length;
+			}
+			return this.types[num];
 		},
 
 		getName: function() {

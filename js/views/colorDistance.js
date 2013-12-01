@@ -14,7 +14,7 @@ define([ 	'backbone',
 		},
 
 		render: function(distance) {
-			this.$el.html('Color Distance: ' + this.model.get('distance')+'. (Threshold: '+this.model.get('threshold')+')');
+			this.$el.html('Distance: ' + parseFloat(this.model.get('distance')).toFixed(2));
 			return this;
 		},
 

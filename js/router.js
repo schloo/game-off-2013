@@ -1,7 +1,9 @@
 require([ 'backbone', 'app'], function(Backbone, App) {
 	var Router = Backbone.Router.extend({
 	  routes: {
-	  	"": 					"index"
+	  	"": "index",
+	  	"game": "game",
+	  	"death": "death",
 	  },
 
 	  initialize: function() {
@@ -11,7 +13,16 @@ require([ 'backbone', 'app'], function(Backbone, App) {
 
 	  index: function() {
 	  	this.app.index();
+	  },
+
+	  game: function() {
+	  	this.app.game();
+	  },
+
+	  death: function() {
+	  	this.app.death();
 	  }
+
 	});
 	return new Router();
 });

@@ -20,11 +20,13 @@ define([
 
 		src: 'img/leon/',
 
-		color: 'ffffff',
+		color: '156b15',
 
 		initialize: function(options) {
 			this.walkIndex = 0;
 			this.model = new LeonModel();
+
+			this.baseColor = '156b15';
 
 			this.listenTo(this.model,'change:walk',_.bind(this.handleWalk,this));
 
@@ -109,6 +111,7 @@ define([
 	  	// },
 
 	  	handleWalk: function(model) {
+	  		console.log('walk status', model.changed.walk);
 	  		if ( model.changed.walk === true) {
 	  			this.walk();
 	  			this.walkingInterval = setInterval(function(){
